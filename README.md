@@ -15,6 +15,7 @@
 3. Поруч ви отримаєте копію українізатора. Оригінал варто видалити.
 4. Слідуйте [інструкціям з встановлення](https://drive.google.com/file/d/1lzewIcuX1bHtKqSEBj7GlEizc_19apYQ/view) звичайного українізатора, але використовуйте замість нього версію для налагодження.
 
+Відео приклад: https://youtu.be/ThJygfDNf-Q
 
 ### Результат:
 ![зображення](https://user-images.githubusercontent.com/1662812/220756636-ddc430d3-9ee3-4b48-a70e-ce8935c4fad8.png)
