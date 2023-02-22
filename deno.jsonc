@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts",
+    "compile": "deno compile -A -o DEBUG-ALL.exe ./all.ts && deno compile -A -o DEBUG-MENU.exe ./menu.ts && deno compile -A -o DEBUG-SUB.exe ./sub.ts "
+  }
+}
