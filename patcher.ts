@@ -9,9 +9,20 @@ export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
   const UNREAL_PACK_UTIL_PATH = resolve("./UnrealPak.exe");
   const PT_UTIL_PATH = resolve("./Parseltongue.exe");
 
+  // console.log({
+  //   url: import.meta.url,
+  //   resolve: import.meta.resolve("./Parseltongue.exe"),
+  //   meta: import.meta,
+  //   mm: import.meta.main,
+  //   cwd: Deno.cwd(),
+  //   UNREAL_PACK_UTIL_PATH,
+  //   PT_UTIL_PATH,
+  // });
+
   try {
     statSync(UNREAL_PACK_UTIL_PATH);
   } catch (e) {
+    console.error(e);
     alert("Файл UnrealPak.exe не знайдено");
     Deno.exit(1);
   }
@@ -19,6 +30,7 @@ export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
   try {
     statSync(PT_UTIL_PATH);
   } catch (e) {
+    console.error(e);
     alert("Файл Parseltongue.exe не знайдено");
     Deno.exit(1);
   }
@@ -73,8 +85,10 @@ export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
     const patchedData: Record<string, string> = {};
 
     for (const key in originData) {
-      patchedData[key] = originData[key].startsWith(key)
+      patchedData[key] = originData[key].includes(key)
         ? originData[key]
+        : originData[key].trim().startsWith("[[")
+        ? originData[key].replace("[[", `[[${key}: `).replace("]]", `]]${key}:`)
         : `${key}: ${originData[key]}`;
     }
 
