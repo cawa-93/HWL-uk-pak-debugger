@@ -6,8 +6,8 @@ import {
 } from "https://deno.land/std@0.177.0/path/mod.ts";
 
 export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
-  const UNREAL_PACK_UTIL_PATH = new URL("UnrealPak.exe", import.meta.url);
-  const PT_UTIL_PATH = new URL("Parseltongue.exe", import.meta.url);
+  const UNREAL_PACK_UTIL_PATH = resolve("./UnrealPak.exe");
+  const PT_UTIL_PATH = resolve("./Parseltongue.exe");
 
   try {
     statSync(UNREAL_PACK_UTIL_PATH);
