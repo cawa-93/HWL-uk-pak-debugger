@@ -85,6 +85,14 @@ export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
     const patchedData: Record<string, string> = {};
 
     for (const key in originData) {
+      // Ігнорувати іконки клавіш
+      if (
+        key.toLowerCase().startsWith("inputaction_") ||
+        key.toLowerCase().startsWith("keyboard_")
+      ) {
+        patchedData[key] = originData[key];
+        continue;
+      }
       patchedData[key] = originData[key].includes(key)
         ? originData[key]
         : originData[key].trim().startsWith("[[")
@@ -112,7 +120,7 @@ export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
 
   const OUTPUT_PAK_PATH = resolve(
     PAK_CWD,
-    PACK_NAME.replace(".pak", `--${files.join("-")}.pak`)
+    PACK_NAME.replace(".pak", `--DEBUG--${files.join("-")}.pak`)
   );
 
   Deno.writeTextFileSync(
