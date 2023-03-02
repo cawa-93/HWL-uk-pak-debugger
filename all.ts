@@ -1,3 +1,3 @@
 import { patcher } from "./patcher.ts";
 
-patcher(["MAIN-enUS", "SUB-enUS"]);
+await patcher(["MAIN-enUS", "SUB-enUS"]);

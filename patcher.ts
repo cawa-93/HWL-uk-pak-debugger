@@ -6,18 +6,14 @@ import {
 } from "https://deno.land/std@0.177.0/path/mod.ts";
 
 export async function patcher(files: ("MAIN-enUS" | "SUB-enUS")[]) {
-  const UNREAL_PACK_UTIL_PATH = resolve("./UnrealPak.exe");
-  const PT_UTIL_PATH = resolve("./Parseltongue.exe");
+  const execDir =
+    basename(Deno.execPath()).startsWith("DEBUG-") &&
+    basename(Deno.execPath()).endsWith(".exe")
+      ? dirname(Deno.execPath())
+      : Deno.cwd();
 
-  // console.log({
-  //   url: import.meta.url,
-  //   resolve: import.meta.resolve("./Parseltongue.exe"),
-  //   meta: import.meta,
-  //   mm: import.meta.main,
-  //   cwd: Deno.cwd(),
-  //   UNREAL_PACK_UTIL_PATH,
-  //   PT_UTIL_PATH,
-  // });
+  const UNREAL_PACK_UTIL_PATH = resolve(execDir, "./UnrealPak.exe");
+  const PT_UTIL_PATH = resolve(execDir, "./Parseltongue.exe");
 
   try {
     statSync(UNREAL_PACK_UTIL_PATH);
